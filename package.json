@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Kodjevlar/snabb.git"
   },
-  "author": "Joel snabbRoxell <joel.roxell@na-kd.com> (https://github.com/JoelRoxell)",
+  "author": "Joel Roxell <joel.roxell@na-kd.com> (https://github.com/JoelRoxell)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kodjevlar/snabb/issues"
@@ -24,6 +24,8 @@
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.16.3",
     "express": "^4.14.0",
+    "express-graphql": "^0.5.4",
+    "graphql": "^0.7.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-dom-stream": "^0.5.1",
