@@ -1,0 +1,27 @@
+{
+  "env": {
+    "es6": true,
+    "mocha": true
+  },
+  "extends" : [
+    "standard",
+    "standard-react",
+    "google"
+  ],
+  "parser"  : "babel-eslint",
+  "plugins" : [
+    "react"
+  ],
+  "rules": {
+    "semi" : [2, "always"],
+    "max-len": [2, 120, 2],
+    "quotes": [2, "single", { "allowTemplateLiterals": true }],
+    "jsx-quotes": [2, "prefer-single"],
+    "object-curly-spacing": ["error", "always", {
+      "objectsInObjects": false,
+      "arraysInObjects": false
+    }],
+    "react/jsx-curly-spacing": [2, "always"],
+    "react/jsx-no-literals": 1
+  }
+}
