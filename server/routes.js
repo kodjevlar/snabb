@@ -2,10 +2,10 @@ import { Router as expressRouter } from 'express';
 import { renderToStaticMarkup } from 'react-dom-stream/server';
 import { match } from 'react-router';
 
-const router = expressRouter();
-
 import generateMarkup from './generate-markup';
 import routes from '../src/routes';
+
+const router = expressRouter();
 
 router.get('*', function(req, res) {
   match({ routes, location: req.url }, function(err, redirectLocation, renderProps) {

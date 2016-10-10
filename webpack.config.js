@@ -1,5 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const poststylus = require('poststylus');
+const autoprefixer = require('autoprefixer');
 
 var config = {
   module: {}
@@ -24,6 +27,10 @@ config.module.loaders = [
     query: {
       presets: ['es2015', 'react']
     }
+  },
+  {
+    test: /\.styl$/,
+    loader: ExtractTextPlugin.extract('css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader') // eslint-disable-line
   }
 ];
 
@@ -32,7 +39,18 @@ config.plugins = [
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }
-  })
+  }),
+  new ExtractTextPlugin('[name].css')
 ];
+
+config.postcss = () => {
+  return [autoprefixer];
+};
+
+config.stylus = {
+  use: [
+    poststylus(['autoprefixer'])
+  ]
+};
 
 module.exports = config;

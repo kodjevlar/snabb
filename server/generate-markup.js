@@ -17,6 +17,8 @@ export default renderProps => (
         name={ config.TITLE }
         content={ 'description' }
       />
+
+      <link rel='stylesheet' type='text/css' href='main.css' />
     </head>
 
     <body>

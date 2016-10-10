@@ -1,9 +1,15 @@
 require('babel-core/register')({
-  presets: ['es2015', 'react']
+  presets: [
+    'es2015',
+    'react'
+  ]
 });
 const express = require('express');
 const app = express();
 const http = require('http');
+
+require('./style-import-hook');
+
 const server = http.createServer(app);
 
 app.use(express.static('public'));
