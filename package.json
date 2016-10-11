@@ -27,8 +27,10 @@
     "css-loader": "^0.25.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "generic-names": "^1.0.1",
     "json-loader": "^0.5.4",
     "postcss-loader": "^0.13.0",
+    "postcss-modules-parser": "^1.1.0",
     "poststylus": "^0.2.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -46,6 +48,7 @@
     "eslint-config-standard-react": "^4.2.0",
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^6.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "postcss": "^5.2.4"
   }
 }
