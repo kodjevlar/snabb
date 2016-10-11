@@ -12,6 +12,7 @@ class App extends Component {
         <div className={ style.title }>
           { 'App title' }
         </div>
+
         { this.props.children }
 
         <div>

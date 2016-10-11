@@ -8,8 +8,8 @@ var config = {
   module: {},
   resolve: {
     alias: {
-      'routes': path.join(__dirname, 'src', 'routes'),
-      'components': path.join(__dirname, 'src', 'components')
+      routes: path.join(__dirname, 'src', 'routes'),
+      components: path.join(__dirname, 'src', 'components')
     }
   },
   modulesDirectories: ['node_modules', 'src']
