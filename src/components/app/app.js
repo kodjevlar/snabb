@@ -5,7 +5,7 @@ import style from './app-style.styl';
 
 class App extends Component {
   componentDidMount() {
-    console.info('App did mount');
+    console.info('App did mount.');
   }
 
   render() {

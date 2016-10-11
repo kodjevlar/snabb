@@ -10,6 +10,29 @@ import { readFileSync } from 'fs';
 
 let result;
 
+// Process CSS
+function extractor(compileStylus) {
+  const generateScopedName = genericNames('[name]__[local]___[hash:base64:5]');
+
+  const plugins = ([
+    Values,
+    LocalByDefault,
+    ExtractImports,
+    new Scope({ generateScopedName })
+  ]).concat(new Parser({ compileStylus }));
+
+  return postcss(plugins);
+}
+
+// Load CSS modules and get nodes tokens
+function compileStylus(filename) {
+  let css = stylus.render(readFileSync(filename, 'utf8'), { filename });
+
+  result = extractor(compileStylus).process(css, { from: filename });
+
+  return result.root.tokens;
+}
+
 // Require hook
 function hook(compile, extension) {
   require.extensions[extension] = function(m, filename) {
@@ -21,28 +44,5 @@ function hook(compile, extension) {
   };
 }
 
-// Load CSS modules and get nodes tokens
-function fetch(filename) {
-  let css = stylus.render(readFileSync(filename, 'utf8'), { filename });
-
-  result = extractor(fetch).process(css, { from: filename });
-
-  return result.root.tokens;
-}
-
-// Process CSS
-function extractor(fetch) {
-  const generateScopedName = genericNames('[name]__[local]___[hash:base64:5]');
-
-  const plugins = ([
-    Values,
-    LocalByDefault,
-    ExtractImports,
-    new Scope({ generateScopedName })
-  ]).concat(new Parser({ fetch }));
-
-  return postcss(plugins);
-}
-
 // Run require hook
-hook(fetch, '.styl');
+hook(compileStylus, '.styl');
