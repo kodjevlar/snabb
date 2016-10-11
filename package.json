@@ -5,8 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node build/server",
-    "build:client": "node_modules/webpack/bin/webpack.js --progress",
-    "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build"
+    "build:client": "node_modules/webpack/bin/webpack.js --config webpack.config.production.js -p --progress",
+    "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build --copy-files"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
   "devDependencies": {
     "babel-eslint": "^7.0.0",
     "babel-watch": "^2.0.3",
+    "clone": "^2.0.0",
     "eslint": "^3.7.1",
     "eslint-config-google": "^0.6.0",
     "eslint-config-standard": "^6.2.0",

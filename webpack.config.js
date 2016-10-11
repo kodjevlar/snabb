@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const poststylus = require('poststylus');
 const autoprefixer = require('autoprefixer');
+const srcConfig = require('./src/config');
 
 var config = {
   module: {},
@@ -16,12 +17,12 @@ var config = {
 };
 
 config.entry = [
-  './src/client'
+  srcConfig.entry.development
 ];
 
 config.output = {
   path: path.join(__dirname, 'public'),
-  filename: 'bundle.js',
+  filename: srcConfig.files.CLIENT_BUNDLE,
   chunkFilename: '[id].js',
   publicPath: 'static'
 };
@@ -44,10 +45,10 @@ config.module.loaders = [
 config.plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      'NODE_ENV': JSON.stringify('production')
+      NODE_ENV: JSON.stringify('development')
     }
   }),
-  new ExtractTextPlugin('[name].css')
+  new ExtractTextPlugin(srcConfig.files.STYLE_BUNDLE)
 ];
 
 config.postcss = () => {

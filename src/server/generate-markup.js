@@ -15,10 +15,10 @@ export default renderProps => (
 
       <meta
         name={ config.TITLE }
-        content={ 'description' }
+        content={ config.DESCRIPTION }
       />
 
-      <link rel='stylesheet' type='text/css' href='main.css' />
+      <link rel='stylesheet' type='text/css' href={ `${config.files.STYLE_BUNDLE}` } />
     </head>
 
     <body>
@@ -32,7 +32,7 @@ export default renderProps => (
       <script dangerouslySetInnerHTML={ { __html: `
         console.info('Server-side rendered.')
       ` } } />
-      <script src='bundle.js' />
+      <script src={ `${config.files.CLIENT_BUNDLE}` } />
     </body>
   </html>
 );
