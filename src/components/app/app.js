@@ -1,10 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import style from './app-style.styl';
+
 class App extends Component {
+  componentDidMount() {
+    console.info('App did mount.');
+  }
+
   render() {
     return (
-      <div>
+      <div className={ style.root }>
+        <div className={ style.title }>
+          { 'App title' }
+        </div>
+
         { this.props.children }
 
         <div>
