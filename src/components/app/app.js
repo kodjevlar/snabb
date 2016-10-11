@@ -3,9 +3,11 @@ import { Link } from 'react-router';
 
 import style from './app-style.styl';
 
-console.log(style);
-
 class App extends Component {
+  componentDidMount() {
+    console.info('App did mount');
+  }
+
   render() {
     return (
       <div className={ style.root }>

@@ -4,8 +4,8 @@
   "description": "Minimal react SPA which can be used in conjunction with the functional e-commerce repository.",
   "main": "server/index.js",
   "scripts": {
-    "start": "node_modules/babel-cli/bin/babel-node.js server/index.js",
-    "build": "node_modules/webpack/bin/webpack.js -p --progress"
+    "start": "node_modules/babel-cli/bin/babel-node.js src/server/index.js",
+    "build": "node_modules/webpack/bin/webpack.js --progress"
   },
   "repository": {
     "type": "git",

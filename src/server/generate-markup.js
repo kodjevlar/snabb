@@ -29,6 +29,9 @@ export default renderProps => (
         } }
       />
 
+      <script dangerouslySetInnerHTML={ { __html: `
+        console.info('Server-side rendered.')
+      ` } } />
       <script src='bundle.js' />
     </body>
   </html>

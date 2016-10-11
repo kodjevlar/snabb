@@ -16,7 +16,7 @@ var config = {
 };
 
 config.entry = [
-  './src/main'
+  './src/client'
 ];
 
 config.output = {
