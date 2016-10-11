@@ -56,7 +56,7 @@ config.module.loaders = [
   },
   {
     test: /\.styl$/,
-    loader: ExtractTextPlugin.extract('css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader') // eslint-disable-line
+    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader' // eslint-disable-line
   }
 ];
 
