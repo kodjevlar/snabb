@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import style from './app-style.styl';
 
+console.log(style);
+
 class App extends Component {
   render() {
     return (

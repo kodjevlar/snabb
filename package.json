@@ -4,7 +4,7 @@
   "description": "Minimal react SPA which can be used in conjunction with the functional e-commerce repository.",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node_modules/babel-cli/bin/babel-node.js server/index.js",
     "build": "node_modules/webpack/bin/webpack.js -p --progress"
   },
   "repository": {
@@ -19,8 +19,10 @@
   "homepage": "https://github.com/Kodjevlar/snabb#readme",
   "dependencies": {
     "autoprefixer": "^6.5.0",
+    "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-webpack-alias": "^2.1.1",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.16.3",

@@ -23,6 +23,7 @@ function hook(compile, extension) {
 
 // Load CSS modules and get nodes tokens
 function fetch(filename) {
+  console.log(filename);
   let css = stylus.render(readFileSync(filename, 'utf8'), { filename });
 
   result = extractor(fetch).process(css, { from: filename });

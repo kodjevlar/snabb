@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom-stream/server';
 import { match } from 'react-router';
 
 import generateMarkup from './generate-markup';
-import routes from '../src/routes';
+import routes from 'routes/routes';
 
 const router = expressRouter();
 

@@ -5,11 +5,18 @@ const poststylus = require('poststylus');
 const autoprefixer = require('autoprefixer');
 
 var config = {
-  module: {}
+  module: {},
+  resolve: {
+    alias: {
+      'routes': path.join(__dirname, 'src', 'routes'),
+      'components': path.join(__dirname, 'src', 'components')
+    }
+  },
+  modulesDirectories: ['node_modules', 'src']
 };
 
 config.entry = [
-  './client'
+  './src/main'
 ];
 
 config.output = {
