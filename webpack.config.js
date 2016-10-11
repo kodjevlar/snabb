@@ -17,12 +17,12 @@ var config = {
 };
 
 config.entry = [
-  srcConfig.entry.development
+  srcConfig.ENTRY.DEVELOPMENT
 ];
 
 config.output = {
   path: path.join(__dirname, 'public'),
-  filename: srcConfig.files.CLIENT_BUNDLE,
+  filename: srcConfig.FILES.CLIENT_BUNDLE,
   chunkFilename: '[id].js',
   publicPath: 'static'
 };
@@ -48,7 +48,7 @@ config.plugins = [
       NODE_ENV: JSON.stringify('development')
     }
   }),
-  new ExtractTextPlugin(srcConfig.files.STYLE_BUNDLE)
+  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE)
 ];
 
 config.postcss = () => {

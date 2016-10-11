@@ -18,7 +18,7 @@ export default renderProps => (
         content={ config.DESCRIPTION }
       />
 
-      <link rel='stylesheet' type='text/css' href={ `${config.files.STYLE_BUNDLE}` } />
+      <link rel='stylesheet' type='text/css' href={ `${config.FILES.STYLE_BUNDLE}` } />
     </head>
 
     <body>
@@ -32,7 +32,7 @@ export default renderProps => (
       <script dangerouslySetInnerHTML={ { __html: `
         console.info('Server-side rendered.')
       ` } } />
-      <script src={ `${config.files.CLIENT_BUNDLE}` } />
+      <script src={ `${config.FILES.CLIENT_BUNDLE}` } />
     </body>
   </html>
 );

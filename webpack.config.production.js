@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.config.js');
 const productionConfig = clone(baseConfig);
 
 productionConfig.entry = [
-  srcConfig.entry.production
+  srcConfig.ENTRY.PRODUCTION
 ];
 
 productionConfig.plugins = [
@@ -17,7 +17,7 @@ productionConfig.plugins = [
       NODE_ENV: JSON.stringify('production')
     }
   }),
-  new ExtractTextPlugin(srcConfig.files.STYLE_BUNDLE)
+  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE)
 ];
 
 module.exports = productionConfig;

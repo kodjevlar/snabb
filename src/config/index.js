@@ -4,13 +4,13 @@ module.exports = {
 
   MOUNTING_POINT: 'app',
 
-  files: {
+  FILES: {
     STYLE_BUNDLE: 'main.css',
     CLIENT_BUNDLE: 'bundle.js'
   },
 
-  entry: {
-    production: './build/client',
-    development: './src/client'
+  ENTRY: {
+    PRODUCTION: './build/client',
+    DEVELOPMENT: './src/client'
   }
 };
