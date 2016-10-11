@@ -10,7 +10,13 @@ import { readFileSync } from 'fs';
 
 let result;
 
-// Process CSS
+/**
+ * Specify post css plugins and process the generated css.
+ *
+ * @method extractor
+ * @param  {Function}   compileStylus function which generates the css.
+ * @return {Processor}  Postcss processor specified with which plugins to run on the generated css.
+ */
 function extractor(compileStylus) {
   const generateScopedName = genericNames('[name]__[local]___[hash:base64:5]');
 
@@ -24,25 +30,36 @@ function extractor(compileStylus) {
   return postcss(plugins);
 }
 
-// Load CSS modules and get nodes tokens
+/**
+ * Reads and parses the required file through the stylus compiler. In order to receive valid css.
+ *
+ * @method compileStylus
+ * @param  {String} filename Path to the require file.
+ * @return {Object} Generated css scoped module names.
+ */
 function compileStylus(filename) {
-  let css = stylus.render(readFileSync(filename, 'utf8'), { filename });
+  const css = stylus.render(readFileSync(filename, 'utf8'), { filename });
 
   result = extractor(compileStylus).process(css, { from: filename });
 
   return result.root.tokens;
 }
 
-// Require hook
-function hook(compile, extension) {
-  require.extensions[extension] = function(m, filename) {
+/**
+ * This function specifies what node should do when it comes
+ * accross `extention` in a file import.
+ *
+ * @method createStyleRequireHook
+ * @param  {function} compile Handels the imported filename.
+ * @param  {String}   extension Specifes what type of file `compile` should be used on.
+ */
+function createStyleRequireHook(compile, extension) {
+  require.extensions[extension] = function(module, filename) {
     const tokens = compile(filename);
 
-    let moduleStyles = m._compile('module.exports = ' + JSON.stringify(tokens), filename);
-
-    return moduleStyles;
+    // Expose the created style object.
+    module._compile('module.exports = ' + JSON.stringify(tokens), filename);
   };
 }
 
-// Run require hook
-hook(compileStylus, '.styl');
+createStyleRequireHook(compileStylus, '.styl');

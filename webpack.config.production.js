@@ -17,7 +17,7 @@ productionConfig.plugins = [
       NODE_ENV: JSON.stringify('production')
     }
   }),
-  new ExtractTextPlugin('[name].css')
+  new ExtractTextPlugin(srcConfig.files.STYLE_BUNDLE)
 ];
 
 module.exports = productionConfig;
