@@ -17,14 +17,15 @@ var config = {
 };
 
 config.entry = [
-  srcConfig.ENTRY.DEVELOPMENT
+  srcConfig.ENTRY.DEVELOPMENT,
+  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
 ];
 
 config.output = {
   path: path.join(__dirname, 'public'),
   filename: srcConfig.FILES.CLIENT_BUNDLE,
   chunkFilename: '[id].js',
-  publicPath: 'static'
+  publicPath: '/public/'
 };
 
 config.module.loaders = [
@@ -33,7 +34,24 @@ config.module.loaders = [
     loader: 'babel-loader',
     exclude: /node_modules/,
     query: {
-      presets: ['es2015', 'react']
+      plugins: ['transform-runtime'],
+      presets: ['es2015', 'react'],
+      env: {
+        development: {
+          plugins: [
+            ['react-transform', {
+              transforms: [{
+                transform: 'react-transform-hmr',
+                imports: ['react'],
+                locals: ['module']
+              }, {
+                transform: 'react-transform-catch-errors',
+                imports: ['react', 'redbox-react']
+              }]
+            }]
+          ]
+        }
+      }
     }
   },
   {
@@ -48,7 +66,10 @@ config.plugins = [
       NODE_ENV: JSON.stringify('development')
     }
   }),
-  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE)
+  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()
 ];
 
 config.postcss = () => {
