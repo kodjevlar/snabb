@@ -7,10 +7,14 @@ class About extends Component {
     console.log('About did mount.');
   }
 
+  getText() {
+    return 'Snabbar an sahar blir det inte!';
+  }
+
   render() {
     return (
       <div className={ style.wrapper }>
-        { 'About' }
+        { this.getText() }
       </div>
     );
   }

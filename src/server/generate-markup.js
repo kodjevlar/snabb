@@ -18,7 +18,10 @@ export default renderProps => (
         content={ config.DESCRIPTION }
       />
 
-      <link rel='stylesheet' type='text/css' href={ `public/${config.FILES.STYLE_BUNDLE}` } />
+      { process.env.NODE_ENV === 'production' && (
+          <link rel='stylesheet' type='text/css' href={ `${config.FILES.PUBLIC_PATH}${config.FILES.STYLE_BUNDLE}` } />
+        )
+      }
     </head>
 
     <body>
@@ -32,7 +35,7 @@ export default renderProps => (
       <script dangerouslySetInnerHTML={ { __html: `
         console.info('Server-side rendered.')
       ` } } />
-      <script src={ `public/${config.FILES.CLIENT_BUNDLE}` } />
+      <script src={ `${config.FILES.PUBLIC_PATH}${config.FILES.CLIENT_BUNDLE}` } />
     </body>
   </html>
 );

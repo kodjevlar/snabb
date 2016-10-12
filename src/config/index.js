@@ -6,7 +6,8 @@ module.exports = {
 
   FILES: {
     STYLE_BUNDLE: 'main.css',
-    CLIENT_BUNDLE: 'bundle.js'
+    CLIENT_BUNDLE: 'bundle.js',
+    PUBLIC_PATH: '/public/'
   },
 
   ENTRY: {
