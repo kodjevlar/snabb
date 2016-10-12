@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build/server",
     "build:client": "node_modules/webpack/bin/webpack.js --config webpack.config.production.js -p --progress",
-    "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build --copy-files"
+    "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build --copy-files",
+    "analyze": "node_modules/webpack/bin/webpack.js -json | node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-standard": "^2.0.1",
-    "postcss": "^5.2.4"
+    "postcss": "^5.2.4",
+    "webpack-bundle-size-analyzer": "^2.2.0"
   }
 }
