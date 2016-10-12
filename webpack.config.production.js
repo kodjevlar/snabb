@@ -17,7 +17,12 @@ productionConfig.plugins = [
       NODE_ENV: JSON.stringify('production')
     }
   }),
-  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE)
+  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
 ];
 
 module.exports = productionConfig;
