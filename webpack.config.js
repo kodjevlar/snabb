@@ -58,23 +58,18 @@ config.module.loaders = [
   },
   {
     test: /\.styl$/,
-    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader' // eslint-disable-line
+    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader'
   }
 ];
 
 config.plugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('development')
-    }
-  }),
   new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
 ];
 
-config.postcss = () => {
+config.postcss = function() {
   return [autoprefixer];
 };
 

@@ -6,13 +6,14 @@
   "scripts": {
     "start": "NODE_ENV=production node build/server",
     "build:client": "node_modules/webpack/bin/webpack.js --config webpack.config.production.js -p --progress",
-    "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build --copy-files",
-    "analyze": "node_modules/webpack/bin/webpack.js -json | node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer",
     "build:server": "NODE_ENV=production node_modules/babel-cli/bin/babel.js src/ -d build --copy-files",
+    "build:all": "npm run build:server;npm run build:client",
+    "analyze": "node_modules/webpack/bin/webpack.js -json | node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer",
     "hmr": "NODE_ENV=development node_modules/babel-cli/bin/babel-node.js src/server",
-    "test": "npm run test:coverage",
+    "test": "npm run test:nyc",
     "test:watch": "node_modules/mocha/bin/mocha \"./src/**/tests/*-spec.js\" --compilers js:babel-core/register --watch --recursive",
-    "test:coverage": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- \"./src/**/tests/*-spec.js\""
+    "test:coverage": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- \"./src/**/tests/*-spec.js\" --compilers js:babel-core/register ",
+    "test:nyc": "node_modules/.bin/nyc --require babel-core/register node_modules/.bin/mocha \"./src/**/tests/*-spec.js\""
   },
   "repository": {
     "type": "git",
@@ -52,7 +53,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
-    "babel-istanbul": "^0.11.0",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-watch": "^2.0.3",
@@ -69,6 +69,7 @@
     "jquery": "^3.1.1",
     "jsdom": "^9.6.0",
     "mocha": "^3.1.2",
+    "nyc": "^8.3.1",
     "postcss": "^5.2.4",
     "react-addons-test-utils": "^15.3.2",
     "react-transform-catch-errors": "^1.0.2",

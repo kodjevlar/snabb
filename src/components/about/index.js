@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import style from './about.styl';
 
 class About extends Component {
-  componentDidMount() {
-    console.log('About did mount.');
-  }
-
   getText() {
     return 'Snabbar an sahar blir det inte!';
   }

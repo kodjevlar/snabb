@@ -8,11 +8,17 @@ import hmr from './hmr-setup';
 const app = express();
 const compiler = webpack(config);
 
-if (process.env.NODE_ENV !== 'production') {
-  hmr(app, compiler);
+switch (process.env.NODE_ENV) {
+  case 'production':
+    console.log('Running in production mode.');
+    app.use('/public', express.static('public'));
+    break;
+
+  default:
+    console.log('Running in development mode.');
+    hmr(app, compiler);
 }
 
-app.use(express.static('public'));
 app.use(routes);
 
 export default port => {

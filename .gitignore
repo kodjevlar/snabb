@@ -3,4 +3,5 @@ public
 *.log
 build
 coverage/**
+.nyc_output
 yarn.lock
