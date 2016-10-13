@@ -2,6 +2,10 @@ node_modules
 public
 *.log
 build
+<<<<<<< Updated upstream
 *.lock
 coverage
 coverage/**
+=======
+yarn.lock
+>>>>>>> Stashed changes
