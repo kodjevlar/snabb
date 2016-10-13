@@ -10,11 +10,11 @@ describe('App', function() {
       component = renderComponent(App);
     });
 
-    it('mount component', function() {
+    it('should mount component', function() {
       expect(component).to.contain('Snabb footer');
     });
 
-    it('load style', function() {
+    it('should load style', function() {
       expect(component).to.have.attr('class', style.app);
     });
   });
