@@ -5,7 +5,7 @@ import style from './app-style.styl';
 
 class App extends Component {
   componentDidMount() {
-    // console.info('App did mount.');
+    console.info('App did mount.');
   }
 
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
           </Link>
         </div>
 
-        <div className={ style.viewPort }>
+        <div className={ style['view-port'] }>
           { this.props.children }
         </div>
 
