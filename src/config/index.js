@@ -4,6 +4,8 @@ module.exports = {
 
   MOUNTING_POINT: 'app',
 
+  // BASE_PATH: path.join(__dirname, '..'),
+
   FILES: {
     STYLE_BUNDLE: 'main.css',
     CLIENT_BUNDLE: 'bundle.js',

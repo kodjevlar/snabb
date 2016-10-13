@@ -10,7 +10,9 @@ var config = {
   resolve: {
     alias: {
       routes: path.join(__dirname, 'src', 'routes'),
-      components: path.join(__dirname, 'src', 'components')
+      components: path.join(__dirname, 'src', 'components'),
+      util: path.join(__dirname, 'src', 'util'),
+      server: path.join(__dirname, 'src', 'server')
     }
   },
   modulesDirectories: ['node_modules', 'src']
