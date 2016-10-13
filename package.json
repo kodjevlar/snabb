@@ -9,7 +9,9 @@
     "build:server": "node_modules/babel-cli/bin/babel.js src/ -d build --copy-files",
     "analyze": "node_modules/webpack/bin/webpack.js -json | node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer",
     "hmr": "NODE_ENV=development node_modules/babel-cli/bin/babel-node.js src/server",
-    "test": "node_modules/mocha/bin/mocha \"./src/**/tests/*\" --compilers js:babel-core/register --watch --recursive"
+    "test": "npm run test:coverage",
+    "test:watch": "node_modules/mocha/bin/mocha \"./src/**/tests/*\" --compilers js:babel-core/register --watch --recursive",
+    "test:coverage": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- \"./src/**/tests/*.js\""
   },
   "repository": {
     "type": "git",
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
+    "babel-istanbul": "^0.11.0",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-watch": "^2.0.3",
