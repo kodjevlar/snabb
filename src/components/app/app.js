@@ -10,14 +10,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className={ style.root }>
-        <div className={ style.title }>
+      <div className={ style.app }>
+        <h1 className={ style.title }>
           { 'App title' }
-        </div>
+        </h1>
 
-        { this.props.children }
-
-        <div>
+        <div className={ style.navigation }>
           <Link to='/purpose'>
             { 'Purpose' }
           </Link>
@@ -25,6 +23,14 @@ class App extends Component {
           <Link to='/about'>
             { 'About' }
           </Link>
+        </div>
+
+        <div className={ style.viewPort }>
+          { this.props.children }
+        </div>
+
+        <div className={ style.footer }>
+          {` Snabb footer `}
         </div>
       </div>
     );

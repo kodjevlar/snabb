@@ -18,10 +18,14 @@ export default renderProps => (
         content={ config.DESCRIPTION }
       />
 
+      <meta
+        name='viewport'
+        content='width=device-width, initial-scale=1'
+      />
+
       { process.env.NODE_ENV === 'production' && (
-          <link rel='stylesheet' type='text/css' href={ `${config.FILES.PUBLIC_PATH}${config.FILES.STYLE_BUNDLE}` } />
-        )
-      }
+        <link rel='stylesheet' type='text/css' href={ `${config.FILES.PUBLIC_PATH}${config.FILES.STYLE_BUNDLE}` } />
+      ) }
     </head>
 
     <body>

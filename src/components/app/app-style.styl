@@ -1,7 +1,37 @@
-.root
-  padding: 10px
-  border: 2px solid red
+html, body
+  margin: 0
+  padding: 0
+
+.app
+  height: 100%
   display: flex
+  flex-direction: column
+  font-family: monospace
+  overflow: hidden
 
 .title
-  color: red
+  text-transform: uppercase
+  text-align: center
+  border: 1px solid yellow
+
+.navigation
+  display: flex
+  justify-content: space-around
+  align-items: center
+  height: 3rem
+  border: 1px solid blue
+
+  a
+    text-decoration: none
+    width: 10rem
+    text-align: center
+    color: #000
+    border: 1px solid green
+
+.view-port
+  flex: 1 1 auto
+  border: 1px solid black
+
+.footer
+  border: 1px solid red
+  text-align: center
