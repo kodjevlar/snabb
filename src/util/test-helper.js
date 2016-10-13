@@ -28,20 +28,6 @@ export function renderComponent(ComponentClass) {
   return $(ReactDOM.findDOMNode(domRef));
 }
 
-/**
- * Event simulator using react Test Utilities.
- *
- * @param  {String} eventName Event type to simulate.
- * @param  {Mixed} value      Value to trigger event with.
- */
-$.fn.simulate = function(eventName, value) {
-  if (value) {
-    this.val(value);
-  }
-
-  TestUtils.Simulate[eventName](this[0]); // Trigger a simulate event with passed node.
-};
-
 // Set up chai-jquery
 chaiJquery(chai, chai.util, $);
 
