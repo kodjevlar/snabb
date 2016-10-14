@@ -1,0 +1,14 @@
+{
+  "reporter": [
+    "lcov",
+    "text"
+  ],
+  "require": [
+    "babel-core/register"
+  ],
+  "exclude": [
+    "webpack.config.js",
+    "node_modules"
+  ],
+  "sourceMap": false
+}

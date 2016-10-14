@@ -1,5 +1,5 @@
-// Extend require hook.
-require('./style-import-hook');
+import './style-import-hook';
+import startServer from './server';
 
 // Initiate server.
-require('./server');
+startServer(process.env.PORT || 3000);

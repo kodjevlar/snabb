@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
+import style from './about.styl';
+
 class About extends Component {
+  getText() {
+    return 'Snabbar an sahar blir det inte!';
+  }
+
   render() {
     return (
-      <div>
-        { 'About' }
+      <div className={ style.wrapper }>
+        { this.getText() }
       </div>
     );
   }

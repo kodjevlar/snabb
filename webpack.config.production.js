@@ -25,4 +25,20 @@ productionConfig.plugins = [
   })
 ];
 
+productionConfig.module.loaders = [
+  {
+    test: /.(jsx|js)$/,
+    loader: 'babel-loader',
+    exclude: /node_modules/,
+    query: {
+      plugins: ['transform-runtime'],
+      presets: ['es2015', 'react']
+    }
+  },
+  {
+    test: /\.styl$/,
+    loader: ExtractTextPlugin.extract('css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader') // eslint-disable-line
+  }
+];
+
 module.exports = productionConfig;
