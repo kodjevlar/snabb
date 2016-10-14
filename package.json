@@ -11,7 +11,7 @@
     "analyze": "node_modules/webpack/bin/webpack.js -json | node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer",
     "hmr": "NODE_ENV=development node_modules/babel-cli/bin/babel-node.js src/server",
     "test": "npm run test:coverage",
-    "test:watch": "node_modules/mocha/bin/mocha \"./src/**/tests/*-spec.js\" --compilers js:babel-core/register --watch --recursive",
+    "test:watch": "node_modules/mocha/bin/mocha \"./src/**/tests/*-spec.js\" --compilers js:babel-core/register --watch",
     "test:coverage": "node_modules/.bin/nyc node_modules/.bin/mocha \"./src/**/tests/*-spec.js\""
   },
   "repository": {
