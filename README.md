@@ -21,7 +21,7 @@ TL;DR Barebone SPA project using react and server-side rendering with react-dom-
 
 ## Usage
 
-### Instal dependencies
+### Install dependencies
 ```bash
 git clone git@github.com:kodjevlar/snabb.git
 cd snabb
