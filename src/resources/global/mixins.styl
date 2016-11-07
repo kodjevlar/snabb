@@ -1,0 +1,35 @@
+/* Pixel to rem */
+rem(val)
+  u = unit(val)
+  return  unit(val / remBase, 'rem')
+
+/* Screen */
+lesserThan(device)
+  condition = '(max-width: %s)' % device
+  @media condition
+    { block }
+
+animateGradient(startColor, endColor, speed = 6, deg =  270)
+    background: linear-gradient(unit(270, 'deg'), lightGrey, alabasterWhite);
+    background-size: 400% 400%;
+
+    animation: AnimationName unit(speed, 's') ease infinite;
+
+    @keyframes AnimationName {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
+animateGradientFast(startColor, endColor, speed = 4, deg =  270)
+    background: linear-gradient(unit(270, 'deg'), lightGrey, alabasterWhite);
+    background-size: 400% 400%;
+
+    animation: AnimationName unit(speed, 's') ease infinite;
+
+
+animateGradientFaster(startColor, endColor, speed = 2, deg =  270)
+    background: linear-gradient(unit(270, 'deg'), lightGrey, alabasterWhite);
+    background-size: 400% 400%;
+
+    animation: AnimationName unit(speed, 's') ease infinite;

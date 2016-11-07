@@ -11,10 +11,15 @@ var config = {
     alias: {
       routes: path.join(__dirname, 'src', 'routes'),
       components: path.join(__dirname, 'src', 'components'),
-      util: path.join(__dirname, 'src', 'util'),
-      server: path.join(__dirname, 'src', 'server')
+      server: path.join(__dirname, 'src', 'server'),
+      utils: path.join(__dirname, 'src', 'utils'),
+      resources: path.join(__dirname, 'src', 'resources'),
+      server: path.join(__dirname, 'src', 'server'),
+      ducks: path.join(__dirname, 'src', 'redux', 'ducks'),
+      store: path.join(__dirname, 'src', 'redux', 'store')
     }
   },
+  extensions: ['', '.js', '.jsx', '.json'],
   modulesDirectories: ['node_modules', 'src']
 };
 
@@ -58,7 +63,11 @@ config.module.loaders = [
   },
   {
     test: /\.styl$/,
-    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader'
+    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader!prepend-style-loader?prepend=[src/resources/global/variables, src/resources/global/mixins]' //  eslint-disable-line
+  },
+  {
+    test: /.(png|jpg|ttf|eot|woff|otf|svg)$/,
+    loader: 'url-loader?limit=10000'
   }
 ];
 

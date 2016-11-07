@@ -22,6 +22,7 @@
       "arraysInObjects": false
     }],
     "react/jsx-curly-spacing": [2, "always"],
-    "react/jsx-no-literals": 1
+    "react/jsx-no-literals": 1,
+    "no-unused-expressions": 0
   }
 }

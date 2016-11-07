@@ -1,7 +1,8 @@
 {
   "reporter": [
     "lcov",
-    "text"
+    "text",
+    "cobertura"
   ],
   "require": [
     "babel-core/register"
@@ -10,5 +11,5 @@
     "webpack.config.js",
     "node_modules"
   ],
-  "sourceMap": false
+  "sourceMap": true
 }

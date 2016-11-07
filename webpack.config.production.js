@@ -37,7 +37,11 @@ productionConfig.module.loaders = [
   },
   {
     test: /\.styl$/,
-    loader: ExtractTextPlugin.extract('css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader') // eslint-disable-line
+    loader: ExtractTextPlugin.extract('css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader!prepend-style-loader?prepend=[src/resources/global/variables, src/resources/global/mixins]') //  eslint-disable-line
+  },
+  {
+    test: /.(png|jpg|ttf|eot|woff|otf|svg)$/,
+    loader: 'url-loader?limit=10000'
   }
 ];
 

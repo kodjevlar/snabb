@@ -1,8 +1,12 @@
 import React from 'react';
 import { RouterContext } from 'react-router';
 import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
 
+import configureStore from 'store';
 import config from '../config';
+
+const store = configureStore();
 
 export default renderProps => (
   <html>
@@ -32,12 +36,14 @@ export default renderProps => (
       <div
         id={ `${config.MOUNTING_POINT}` }
         dangerouslySetInnerHTML={ { __html: renderToString(
-          <RouterContext { ...renderProps } />)
+          <Provider store={ store }>
+            <RouterContext { ...renderProps } />
+          </Provider>)
         } }
       />
 
       <script dangerouslySetInnerHTML={ { __html: `
-        console.info('Server-side rendered.')
+        console.info('Server-side rendered from.')
       ` } } />
       <script src={ `${config.FILES.PUBLIC_PATH}${config.FILES.CLIENT_BUNDLE}` } />
     </body>

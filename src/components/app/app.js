@@ -4,10 +4,6 @@ import { Link } from 'react-router';
 import style from './app-style.styl';
 
 class App extends Component {
-  componentDidMount() {
-    console.info('App did mount.');
-  }
-
   render() {
     return (
       <div className={ style.app }>
@@ -30,7 +26,7 @@ class App extends Component {
         </div>
 
         <div className={ style.footer }>
-          {` Snabb footer `}
+          {`Snabb footer`}
         </div>
       </div>
     );
