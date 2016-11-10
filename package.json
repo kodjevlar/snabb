@@ -41,6 +41,7 @@
     "file-loader": "^0.9.0",
     "generic-names": "^1.0.1",
     "json-loader": "^0.5.4",
+    "node-stylus-css-modules-require": "^0.3.0",
     "postcss-loader": "^0.13.0",
     "postcss-modules-parser": "^1.1.0",
     "poststylus": "^0.2.3",
