@@ -1,3 +1,14 @@
+const nodeStylusRequire = require('node-stylus-css-modules-require');
+const prependStyleLoader = require('prepend-style-loader');
+nodeStylusRequire('[name]__[local]___[hash:base64:5]')(
+  function(fileContent) {
+    return prependStyleLoader.apply({
+      query: 'prepend=[src/resources/global/variables, src/resources/global/mixins]',
+      cacheable: function() {}
+    }, [fileContent]);
+  }
+)(/* post-transformer */);
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
@@ -5,8 +16,6 @@ import { jsdom } from 'jsdom';
 import _$ from 'jquery';
 import chai, { expect as chaiExptect } from 'chai';
 import chaiJquery from 'chai-jquery';
-
-import 'server/style-import-hook';
 
 global.document = jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
