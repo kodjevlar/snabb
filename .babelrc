@@ -1,4 +1,18 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["webpack-alias", "transform-object-rest-spread"]
+  "presets": [
+    "es2015",
+    "react"
+  ],
+  "plugins": [
+    "webpack-alias",
+    "transform-object-rest-spread",
+    "transform-flow-strip-types",
+    "transform-runtime",
+    "syntax-dynamic-import",
+    "transform-async-to-generator",
+    "transform-regenerator",
+    "transform-runtime",
+    "dynamic-import-node",
+    "istanbul"
+  ]
 }

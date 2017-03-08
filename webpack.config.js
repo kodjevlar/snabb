@@ -1,91 +1,150 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const poststylus = require('poststylus');
-const autoprefixer = require('autoprefixer');
-const srcConfig = require('./src/config');
 
-var config = {
+const config = require('./src/config/src-config');
+
+const { SRC } = config;
+
+const devConfig = {
   module: {},
   resolve: {
-    alias: {
-      routes: path.join(__dirname, 'src', 'routes'),
-      components: path.join(__dirname, 'src', 'components'),
-      server: path.join(__dirname, 'src', 'server'),
-      utils: path.join(__dirname, 'src', 'utils'),
-      resources: path.join(__dirname, 'src', 'resources'),
-      server: path.join(__dirname, 'src', 'server'),
-      ducks: path.join(__dirname, 'src', 'redux', 'ducks'),
-      store: path.join(__dirname, 'src', 'redux', 'store')
-    }
+    modules: config.MODULES,
+    extensions: config.EXTENTIONS
   },
-  extensions: ['', '.js', '.jsx', '.json'],
-  modulesDirectories: ['node_modules', 'src']
+  devtool: 'eval-cheap-module-source-map'
 };
 
-config.entry = [
-  srcConfig.ENTRY.DEVELOPMENT,
-  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
-];
-
-config.output = {
-  path: path.join(__dirname, 'public'),
-  filename: srcConfig.FILES.CLIENT_BUNDLE,
-  chunkFilename: '[id].js',
-  publicPath: '/public/'
-};
-
-config.module.loaders = [
-  {
-    test: /.(jsx|js)$/,
-    loader: 'babel-loader',
-    exclude: /node_modules/,
-    query: {
-      plugins: ['transform-runtime'],
-      presets: ['es2015', 'react'],
-      env: {
-        development: {
-          plugins: [
-            ['react-transform', {
-              transforms: [{
-                transform: 'react-transform-hmr',
-                imports: ['react'],
-                locals: ['module']
-              }, {
-                transform: 'react-transform-catch-errors',
-                imports: ['react', 'redbox-react']
-              }]
-            }]
-          ]
-        }
-      }
-    }
-  },
-  {
-    test: /\.styl$/,
-    loader: 'style-loader!css-loader?modules&camelCase&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader!prepend-style-loader?prepend=[src/resources/global/variables, src/resources/global/mixins]' //  eslint-disable-line
-  },
-  {
-    test: /.(png|jpg|ttf|eot|woff|otf|svg)$/,
-    loader: 'url-loader?limit=10000'
-  }
-];
-
-config.plugins = [
-  new ExtractTextPlugin(srcConfig.FILES.STYLE_BUNDLE),
-  new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin()
-];
-
-config.postcss = function() {
-  return [autoprefixer];
-};
-
-config.stylus = {
-  use: [
-    poststylus(['autoprefixer'])
+devConfig.entry = {
+  index: [
+    config.ENTRIES.index,
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false'
   ]
 };
 
-module.exports = config;
+devConfig.output = {
+  path: config.PATH,
+  filename: config.filename,
+  chunkFilename: '[id].js',
+  publicPath: config.PUBLIC_PATH
+};
+
+devConfig.resolve.alias = {
+  routes: path.join(SRC, 'routes'),
+  containers: path.join(SRC, 'containers'),
+  components: path.join(SRC, 'components'),
+  utils: path.join(SRC, 'utils'),
+  resources: path.join(SRC, 'resources'),
+  server: path.join(SRC, 'server'),
+  state: path.join(SRC, 'redux', 'state'),
+  ducks: path.join(SRC, 'redux', 'ducks'),
+  store: path.join(SRC, 'redux', 'store'),
+  config: path.join(SRC, 'config'),
+  services: path.join(SRC, 'services'),
+  lang: path.join(SRC, 'lang'),
+  icons: path.join(SRC, 'resources', 'icons')
+};
+
+devConfig.module.rules = [
+  {
+    test: /.(jsx|js)$/,
+    exclude: /node_modules/,
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          babelrc: false,
+          plugins: [
+            'transform-object-rest-spread',
+            'transform-runtime',
+            'syntax-dynamic-import',
+            'transform-async-to-generator',
+            'transform-regenerator',
+            'transform-runtime'
+          ],
+          presets: [
+            [ 'es2015', { 'modules': false } ],
+            'react'
+          ],
+          env: {
+            development: {
+              plugins: [
+                [ 'react-transform', {
+                  transforms: [ {
+                    transform: 'react-transform-hmr',
+                    imports: [ 'react' ],
+                    locals: [ 'module' ]
+                  }, {
+                    transform: 'react-transform-catch-errors',
+                    imports: [ 'react', 'redbox-react' ]
+                  } ]
+                } ]
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    test: /\.styl$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          camelCase: true,
+          localIdentName: config.LOCAL_INDENT_NAME
+        }
+      },
+      'postcss-loader',
+      'stylus-loader',
+      {
+        loader: 'prepend-style-loader',
+        options: {
+          prepend: config.PREPEND_STYLES
+        }
+      }
+    ]
+  },
+  {
+    test: /\.css/,
+    use: [
+      'style-loader',
+      'css-loader'
+    ]
+  },
+  {
+    test: /.(png|jpg|ttf|eot|woff|otf)$/,
+    use: [
+      {
+        loader: 'url-loader'
+      }
+    ]
+  },
+  {
+    test: /\.svg$/,
+    use: [
+      {
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]'
+        }
+      }
+    ]
+  }
+];
+
+devConfig.plugins = [
+  new webpack.HotModuleReplacementPlugin(), // enable HMR globally
+  new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
+];
+
+devConfig.stats = {
+  chunks: false,
+  colors: true
+};
+
+
+module.exports = devConfig;

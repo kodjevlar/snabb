@@ -1,40 +1,89 @@
-# snabb
-[![codecov](https://codecov.io/gh/kodjevlar/snabb/branch/master/graph/badge.svg)](https://codecov.io/gh/kodjevlar/snabb)
-[![travic-ci](https://api.travis-ci.org/kodjevlar/snabb.svg?branch=master)](https://travis-ci.org/kodjevlar/snabb)
+<h1 align="center">snabb</h1>
+<div align="center">
+  <sub>TL;DR Barebone SPA project using react and server-side rendering with react-dom-stream.</sub>
+</div>
 
->A bare bone project which uses some of the latest technologies to date. It’s purpose is to allow new ideas to quickly become MVPs. It provides an efficient and stable starting point which also is capable of growing into a more complex service.
+<br />
 
-TL;DR Barebone SPA project using react and server-side rendering with react-dom-stream.
+<div align="center">
+  <img src="https://media.giphy.com/media/xcZjA0l1r7xIY/giphy.gif" alt="flash" align="center" />
+</div>
+
+<br />
+
+<div align="center">
+  <a href="https://codecov.io/gh/kodjevlar/snabb/branch/master/graph">
+    <img src="https://codecov.io/gh/kodjevlar/snabb/branch/master/graph/badge.svg" alt="Dependency Status" />
+  </a>
+</div>
 
 ## Project structure
-```
+````
 .
+├── scripts
+|   ├── entrypoint.sh
+|   └── test-single-unit.js
 ├── src
-|   ├── client
-|   ├── sub-components (presentational)
-|   |   ├── navigation (component structure)
-|   |   |   ├── components (Sub-components which are only used by the enclosing component)
-|   |   |   ├── styles
-|   |   |   ├── tests
-|   |   |   ├── navigation.js
-|   |   |   └── index.js
-|   |   ├── common (Generally used components)
-|   |   └── ...
-|   ├── containers
-|   ├── config (application settings)
+|   ├── client (client-specific react-router mount/hook)
+|   ├── components
+|   |   ├── common
+|   |   |   ├── comp-1
+|   |   |   |   ├── comp-1.js
+|   |   |   |   ├── comp-1.styl
+|   |   |   |   ├── comp-1-spec.js
+|   |   |   |   └── comp-1-container.js (opt)
+|   |   |   ├── comp-2
+|   |   |   |   ├── subs (sub-components)
+|   |   |   |   |   ├── sub-1
+|   |   |   |   |   |   ├── sub-1.styl
+|   |   |   |   |   |   ├── sub-1.js
+|   |   |   |   |   |   └── sub-1-spec.js
+|   |   |   |   |   ├── sub-1
+|   |   |   |   |   |   ├── sub-2.styl
+|   |   |   |   |   |   ├── sub-2.js
+|   |   |   |   |   |   └── sub-2-spec.js
+|   |   |   |   ├── comp-2.js
+|   |   |   |   ├── comp-2.styl
+|   |   |   |   ├── comp-2-spec.js
+|   |   |   |   └── comp-2-container.js (opt)
+|   |   ├── route-1 (code-split by route)
+|   |   |   ├── route-1.js
+|   |   |   ├── route-1.styl
+|   |   |   ├── route-spec-1.js
+|   |   |   ├── route-1-container.js (opt)
+|   |   |   └── subs (sub-components)
+|   |   |   |   ├── sub-1
+|   |   |   |   |   ├── sub-1.styl
+|   |   |   |   |   ├── sub-1.js
+|   |   |   |   |   └── sub-1-spec.js
+|   |   |   |   ├── sub-2
+|   |   |   |   |   ├── sub-2.styl
+|   |   |   |   |   ├── sub-2.js
+|   |   |   |   |   └── sub-2-spec.js
+|   |   |   |   └── ...
+|   |   └── route-2
+|   |   |   ...
 |   ├── routes (application routes)
 |   ├── server
-|   |   ├── generate-markup.js  (Template shell for the server-side SPA)
+|   |   ├── redux (server-side state hook)
+|   |   ├── build-page.js (Page builder for the server-side SPA, prioritizes assets based on react-router url)
 |   |   ├── hmr-setup.js
-|   |   ├── server-route.js (Catch all route for react-router match)
+|   |   ├── server-route.js (react-router matcher)
 |   |   ├── server.js
-|   |   └── style-import-hook.js  (Require extension for stylus)
+|   |   └── index.js  (pre-loader, used to allow nodejs to import non-js files)
 |   ├── redux
-|   |   └── ducks (a duck = reducer + action types + action creators)
+|   |   └── ducks (a duck = reducer + action types + action creators + index exporting internals)
+|   |   |   └── 1-duck
+|   |   |   |   ├── duck-1.js
+|   |   |   |   └── duck-1-spec.js
+|   |   |   └── 2-duck
+|   |   |   |   ├── 2-duck.js
+|   |   |   |   └── 2-duck-spec.js
 |   ├── actors
 |   ├── utils
-|   └── services
-└── build (transpiled files)
+|   └── services (singletons and service workers)
+├── assets (public assests required to load the application, ex: bundles and sprites)
+└── build
 ```
 
 ## Core technologies

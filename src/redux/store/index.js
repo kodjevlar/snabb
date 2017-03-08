@@ -1,25 +1,32 @@
-import { createStore, compose } from 'redux';
-import rootDuck from '../ducks';
+import { createStore, compose, applyMiddleware } from 'redux';
+import rootDuck from 'ducks';
+import thunk from 'redux-thunk';
 
-export default function configureStore() {
-  let enhancerSettings;
+/**
+ * Enables setting module.hot to a stub for testing purposes
+ * @param {[stub]} hot Stub with a sinon spy
+ */
+export function _setHot(hot) {
+  module.hot = hot;
+}
 
-  if (typeof window !== 'undefined') {
-    enhancerSettings = window.devToolsExtension ? window.devToolsExtension() : f => f
-  }
+export function replace(store) {
+  store.replaceReducer(rootDuck);
+}
 
-  let store = createStore(
+export default function configureStore(serverSideState) {
+  const store = createStore(
     rootDuck,
-    compose(enhancerSettings)
+    serverSideState,
+    compose(
+      applyMiddleware(thunk),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
   );
 
   if (module.hot) {
     // Enable Webpack hot module replacement for ducks
-    module.hot.accept(() => {
-      const nextRootDuck = rootDuck;
-
-      store.replaceReducer(nextRootDuck);
-    });
+    module.hot.accept(replace(store));
   }
 
   return store;

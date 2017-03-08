@@ -1,0 +1,14 @@
+{
+  "brackets": {
+    "expect": "never",
+    "error": true
+  },
+  "colons": {
+    "expect": "always",
+    "error": true
+  },
+  "semicolons": "never",
+  "sortOrder": "alphabetical",
+  "stackedProperties": "never",
+  "trailingWhitespace": "never"
+}

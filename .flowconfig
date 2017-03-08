@@ -1,0 +1,25 @@
+[ignore]
+.*/build
+.*/node_modules/.*
+.*/coverage/.*
+
+[include]
+
+[libs]
+flow-typed/
+./src/interfaces/global.js
+./src/interfaces/modules.js
+
+[options]
+module.name_mapper='^\(.*\)\.styl$' -> '<PROJECT_ROOT>/src/interfaces/CSSFlowStub.js.flow'
+module.name_mapper='^ducks\/\(.*\)$' -> '<PROJECT_ROOT>/src/redux/ducks/\1'
+module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
+module.name_mapper='^routes$' -> '<PROJECT_ROOT>/src/routes'
+module.name_mapper='^store$' -> '<PROJECT_ROOT>/src/redux/store'
+
+munge_underscores=true
+
+suppress_type=$FlowFixMe
+
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

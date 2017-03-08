@@ -1,5 +1,8 @@
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import debug from 'debug';
+
+const info = debug('snabb::hmr');
 
 /**
  * Hooks webpack hmr to the current server build.
@@ -8,23 +11,19 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
  * @param  {Compiler} compiler  webpack compiler with specified configuration.
  */
 export default function(app, compiler) {
-  console.log('Server is running on development mode');
-
+  info('setting up dev-middleware');
   app.use(webpackDevMiddleware(compiler, {
-    hot: true,
     filename: 'bundle.js',
     publicPath: '/public/',
     stats: {
       chunks: false,
-      chunkModules: false,
       colors: true
-    },
-    historyApiFallback: true
+    }
   }));
 
+  info('setting up hot-middleware');
   app.use(webpackHotMiddleware(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
+    path: '/__what',
+    heartbeat: 2000
   }));
 }

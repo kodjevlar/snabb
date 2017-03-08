@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import React, { PureComponent, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import style from './app-style.styl';
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return (
       <div className={ style.app }>
@@ -21,12 +22,12 @@ class App extends Component {
           </Link>
         </div>
 
-        <div className={ style['view-port'] }>
+        <div className={ style.viewPort }>
           { this.props.children }
         </div>
 
         <div className={ style.footer }>
-          {`Snabb footer`}
+          { `Snabb footer` }
         </div>
       </div>
     );

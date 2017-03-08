@@ -1,15 +1,9 @@
 {
   "reporter": [
     "lcov",
-    "text",
-    "cobertura"
+    "cobertura",
+    "clover"
   ],
-  "require": [
-    "babel-core/register"
-  ],
-  "exclude": [
-    "webpack.config.js",
-    "node_modules"
-  ],
-  "sourceMap": true
+  "sourceMap": false,
+  "instrument": false
 }

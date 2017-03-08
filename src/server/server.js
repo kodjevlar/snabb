@@ -1,28 +1,39 @@
+// @flow
 import express from 'express';
 import webpack from 'webpack';
+import compression from 'compression';
+import debug from 'debug';
 
-import config from '../../webpack.config';
+import webpackConfig from '../../webpack.config';
+import config from '../config/src-config';
 import routes from './server-route';
 import hmr from './hmr-setup';
 
-const app = express();
-const compiler = webpack(config);
+const snabb = express();
+const info = debug('snabb::server');
 
 switch (process.env.NODE_ENV) {
   case 'production':
-    console.log('Running in production mode.');
-    app.use('/public', express.static('public'));
+    info('running in production mode.');
+    snabb.use(compression({
+      // gzip request to public folder.
+      filter: req => req.baseUrl.indexOf(config.PUBLIC_PATH) === 0,
+      level: 9 // 0 - 9 compression level.
+    }));
+
+    info(`using ${config.PATH} for public assets`);
+    snabb.use('/public', express.static(config.PATH));
     break;
 
   default:
-    console.log('Running in development mode.');
-    hmr(app, compiler);
+    info('running in development mode.');
+    hmr(snabb, webpack(webpackConfig));
 }
 
-app.use(routes);
+snabb.use(routes);
 
-export default port => {
-  app.listen(port, function() {
-    console.log('Server side is ready to render!');
+export default (port: number = 3000) => {
+  snabb.listen(port, function() {
+    info(`ready on port: ${port}`);
   });
 };
